@@ -1,0 +1,1 @@
+This the project done by Patel Vidhi, Patel Nyasia and Sadaria Jiya. This mini project of chatbot is programed using C Programming. This is based on how a simple chatbot works.A chatbot is a way to chat with a machine and can help in answering our questions.
