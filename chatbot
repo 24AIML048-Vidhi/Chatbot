@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <time.h>  // for time functions
+
+void respond(char *input) {
+    // Convert input to lowercase for case-insensitive comparison
+    for (int i = 0; input[i]; i++) {
+        input[i] = tolower(input[i]);
+    }
+
+    // Adding random responses for variety
+    int random_response = rand() % 2;
+
+    if (strstr(input, "hello") || strstr(input, "hi")) {
+        if (random_response) {
+            printf("SimpleBot: Hey there! How can I assist you?\n");
+        } else {
+            printf("SimpleBot: Hello! How can I help you today?\n");
+        }
+    } else if (strstr(input, "how are you")) {
+        if (random_response) {
+            printf("SimpleBot: I'm here to help you! What do you need?\n");
+        } else {
+            printf("SimpleBot: I'm just a program, but thank you for asking!\n");
+        }
+    } else if (strstr(input, "your name")) {
+        printf("SimpleBot: I am SimpleBot, your virtual assistant.\n");
+    } else if (strstr(input, "bye")) {
+        printf("SimpleBot: Goodbye! Have a nice day.\n");
+    } else if (strstr(input, "what can you do")) {
+        printf("SimpleBot: I can chat with you, answer simple questions, and keep you company!\n");
+    } else if (strstr(input, "joke")) {
+        printf("SimpleBot: Why don't scientists trust atoms? Because they make up everything!\n");
+    } else if (strstr(input, "time")) {
+        time_t current_time;
+        time(&current_time);
+        printf("SimpleBot: The current time is %s", ctime(&current_time));
+    } else {
+        printf("SimpleBot: I'm sorry, I don't understand that.\n");
+    }
+}
+
+int main() {
+    char input[100];
+    
+    // Seed the random number generator
+    srand(time(0));
+
+    printf("SimpleBot: Hi! I am SimpleBot. Type something to chat with me.\n");
+    while (1) {
+        printf("You: ");
+        fgets(input, sizeof(input), stdin);
+
+        // Remove newline character from input
+        input[strcspn(input, "\n")] = 0;
+
+        // Check for exit condition
+        if (strcmp(input, "bye") == 0) {
+            respond(input);
+            break;
+        }
+
+        // Respond to input
+        respond(input);
+    }
+
+    return 0;
+}
